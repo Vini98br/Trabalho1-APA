@@ -1,1 +1,3 @@
-print('oi')
+from utils.quicksort import quickSort
+
+print(quickSort())

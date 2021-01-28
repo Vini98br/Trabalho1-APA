@@ -1,6 +1,8 @@
 class Graph:
   def __init__(self):
     self.adjacentNodeList = []
+    self.orderedIndexList = []  # Manda a posicao de todos os nós na listaAdj para o vetor ordenado
+    self.auxSort = []
 
   def greedyAlgorithm():
     return ''
