@@ -1,6 +1,7 @@
 from utils.quicksort import quickSort
 from app.Node import Node
 from app.Graph import Graph
+from utils.fileReader import readGraph
 
 ## TESTE QUICKSORT
 # arr = []
@@ -25,14 +26,8 @@ from app.Graph import Graph
 numNodes = 0
 numEdges = 0
 graph = Graph()
-with open('./src/test.txt', 'r') as reader:
-  # Read and print the entire file line by line
-  lines = reader.readlines()
-  numNodes = lines[0].split(' ')[2]
-  numEdges = lines[0].split(' ')[3].rsplit('\n')[0]
-  for index in range(1, len(lines)):
-    node1 = lines[index].split(' ')[1]
-    node2 = lines[index].split(' ')[2].rsplit('\n')[0]
-    graph.addEdgeToGraph(node1, node2)
-
-print('Cores: ', graph.greedyAlgorithm())
+edges = readGraph('test')
+for edge in edges:
+  graph.addEdgeToGraph(edge[0], edge[1])
+print('Cores: ', graph.greedyAlgorithm()) 
+graph.printGraph()

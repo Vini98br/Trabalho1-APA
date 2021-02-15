@@ -7,6 +7,15 @@ class Graph:
     self.orderedIndexList = []  # Manda a posicao de todos os nós na listaAdj para o vetor ordenado
     self.auxSort = []
 
+  def printGraph(self):
+    for node in self.adjacentNodeList:
+      auxCont = 0
+      print("Cor: ", node.color, " ", "[", node.id, "]", end='')
+      for edge in node.edgeList:
+        print(' ->', node.edgeList[auxCont].destinyNodeId, end='')
+        auxCont +=1
+      print()
+
   def addNode(self, id):
     node = Node(id, 0)
     self.adjacentNodeList.append(node)
@@ -21,37 +30,35 @@ class Graph:
       return False
 
   def addEdgeToGraph(self, id1, id2):
-    # containInGraph = [False, False]
-    flag1 = False
-    flag2 = False
+    isOnGraph = [False, False]
     if self.isOnGraph(id1):
-      flag1 = True
+      isOnGraph[0] = True
     else:
       self.addNode(id1) # Se não está no Grafo adicionar
-      flag1 = True
+      isOnGraph[0] = True
+
 
     if self.isOnGraph(id2):
-      flag2 = True
+      isOnGraph[1] = True
     else:
       self.addNode(id2) # Se não está no Grafo adicionar
-      flag2 = True
+      isOnGraph[1] = True
 
-    # print(containInGraph)
     # Se os dois ids estão no Grafo
-    if flag1 != False and flag2 != False:
+    if isOnGraph[0] == True and isOnGraph[1] == True:
       indexNode1 = -1
       indexNode2 = -1
-      for index in range(0, len(self.adjacentNodeList) - 1):
+      for index in range(0, len(self.adjacentNodeList)):
         if id1 != id2:
           if self.adjacentNodeList[index].id == id1:
             indexNode1 = index
           elif self.adjacentNodeList[index].id == id2:
             indexNode2 = index
           
-          # print(indexNode1)
-          # print(indexNode2)
+          # print(indexNode1, indexNode2)
+          # print(index)
         if indexNode1 != -1 and indexNode2 != -1:
-          print(self.adjacentNodeList[indexNode1])
+          # print('tem que entrar aqui', self.adjacentNodeList[indexNode1])
           self.adjacentNodeList[indexNode1].addEdge(id2, id1, indexNode2, indexNode1)
           self.adjacentNodeList[indexNode2].addEdge(id1, id2, indexNode1, indexNode2)
           break
@@ -75,7 +82,7 @@ class Graph:
     quickSort(self.auxSort, self.orderedIndexList, 0, len(self.auxSort) - 1) # Ordena o vetor em ordem decrescente em relação ao grau.
 
     maxColors = 0 # O maximo de cor no momento.
-    
+
     firstNode = self.adjacentNodeList[self.orderedIndexList[0]]
     firstNode.color = maxColors # Pega o primeiro vertice com maior No (grau, não?) e adiciona a primeira cor a ele.
 
@@ -87,9 +94,8 @@ class Graph:
     for orderedIndex in self.orderedIndexList: # Pega os próximos nós de acordo com a ordem decrescente em relação ao grau.
       position = orderedIndex # Variável que guarda qual o indice da listaAdj fica o nó.
 
-      for colorNumber in range(0, maxColors): # Loop que roda todas as cores que existem até o momento
+      for colorNumber in range(0, maxColors + 1): # Loop que roda todas as cores que existem até o momento
         flag = False
-
         if colorNumber < maxColors: # Se colorNumber é igual a cor atual, então nenhum nó adjacente a ele tem cor maxColors, assim a cor dele sera maxColors e nao é preciso checar suas cores adjacentes.
           for adjacentColor in self.adjacentNodeList[position].adjacentColors: # Loop que percorre todas as cores que são adjacentes ao nó, pelo vetor adjacentColors que pertence ao nó.
             if adjacentColor == colorNumber:

@@ -9,7 +9,6 @@ class Node:
     self.color = -1
 
   def addEdge(self, destinyNodeId, sourceNodeId, destinyNodeIndex, sourceNodeIndex):
-    print(destinyNodeId)
     edge = Edge(destinyNodeId, sourceNodeId, destinyNodeIndex, sourceNodeIndex)
     if destinyNodeId == self.id:
       self.degree += 2
