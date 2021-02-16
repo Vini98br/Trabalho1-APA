@@ -2,6 +2,9 @@ from utils.quicksort import quickSort
 from app.Node import Node
 from app.Graph import Graph
 from utils.fileReader import readGraph
+import sys
+import time
+import math
 
 ## TESTE QUICKSORT
 # arr = []
@@ -23,11 +26,24 @@ from utils.fileReader import readGraph
 
 # file = open('test.txt', 'r')
 # print(file.readline().split(' '))
-numNodes = 0
-numEdges = 0
-graph = Graph()
-edges = readGraph('test')
-for edge in edges:
-  graph.addEdgeToGraph(edge[0], edge[1])
-print('Cores: ', graph.greedyAlgorithm()) 
-graph.printGraph()
+def main(args):
+  if(args):
+    print('------------')
+    print('Round: ', args[1])
+    print('------------')
+  numNodes = 0  
+  numEdges = 0
+  graph = Graph()
+  edges = readGraph('test')
+  for edge in edges:
+    graph.addEdgeToGraph(edge[0], edge[1])
+  
+  start_time = time.time()
+  print('Cores: ', graph.greedyAlgorithm()) 
+  end_time = time.time()
+  print(end_time)
+  print(start_time)
+  print("--- %.4f seconds ---" % (end_time - start_time))
+  graph.printGraph()
+
+main(sys.argv)
