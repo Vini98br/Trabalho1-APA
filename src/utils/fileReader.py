@@ -1,5 +1,5 @@
 def readGraph(filename):
-  with open('./src/{filename}.txt'.format(filename=filename), 'r') as reader:
+  with open('{filename}.txt'.format(filename=filename), 'r') as reader:
     lines = reader.readlines()
     edgeArr = []
     numNodes = lines[0].split(' ')[2]

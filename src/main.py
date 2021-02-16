@@ -21,13 +21,13 @@ from utils.fileReader import readGraph
 # for y in auxArr:
 #   print(y)
 
-# file = open('test.txt', 'r')
-# print(file.readline().split(' '))
+file = open('test.txt', 'r')
+print(file.readline().split(' '))
 numNodes = 0
 numEdges = 0
 graph = Graph()
 edges = readGraph('test')
 for edge in edges:
   graph.addEdgeToGraph(edge[0], edge[1])
-print('Cores: ', graph.greedyAlgorithm()) 
+print('Cores: ', graph.greedyAlgorithmWP()) 
 graph.printGraph()

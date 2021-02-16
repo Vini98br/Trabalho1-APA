@@ -25,3 +25,10 @@ class Node:
     
     if flag == False:
       self.adjacentColors.append(color)
+
+  def verifyIfNodeIsAdjacent(self, id):
+    for edge in self.edgeList:
+      if(edge.destinyNodeId == id):
+        return True
+    return False
+       
