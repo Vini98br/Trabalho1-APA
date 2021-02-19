@@ -168,7 +168,6 @@ class Graph:
     maxColors += 1 # Atualiza a cor
 
     for position in range(1, len(self.adjacentNodeList)): # Pega os próximos nós de acordo com a ordem decrescente em relação ao grau.
-      print(self.adjacentNodeList[position].id)
       for colorNumber in range(0, maxColors + 1): # Loop que roda todas as cores que existem até o momento
         flag = False
         if colorNumber < maxColors: # Se colorNumber é igual a cor atual, então nenhum nó adjacente a ele tem cor maxColors, assim a cor dele sera maxColors e nao é preciso checar suas cores adjacentes.
