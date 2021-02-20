@@ -55,10 +55,7 @@ class Graph:
           elif self.adjacentNodeList[index].id == id2:
             indexNode2 = index
           
-          # print(indexNode1, indexNode2)
-          # print(index)
         if indexNode1 != -1 and indexNode2 != -1:
-          # print('tem que entrar aqui', self.adjacentNodeList[indexNode1])
           self.adjacentNodeList[indexNode1].addEdge(id2, id1, indexNode2, indexNode1)
           self.adjacentNodeList[indexNode2].addEdge(id1, id2, indexNode1, indexNode2)
           break
@@ -73,9 +70,6 @@ class Graph:
       node.color = -1 # Coloca as cores de todos os nos como -1
       self.orderedIndexList.append(cont) # Manda a posicao de todos os nós na listaAdj para o vetor ordenado
       cont += 1
-
-    # for x in self.adjacentNodeList: 
-    #   print(x.degree)
 
     self.auxSort = self.adjacentNodeList.copy()
 

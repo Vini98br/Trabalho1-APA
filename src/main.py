@@ -42,6 +42,6 @@ def main(args):
         bruteForceColors=bruteForceColors)
     )
 
-  # graph.printGraph()
+  # graph.printGraph() # Imprime o grafo
 
 main(sys.argv)
