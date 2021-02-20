@@ -5,7 +5,6 @@ class Node:
     self.adjacentColors = []
     self.id = id
     self.degree = exitDegree
-    self.visited = False
     self.color = -1
 
   def addEdge(self, destinyNodeId, sourceNodeId, destinyNodeIndex, sourceNodeIndex):
