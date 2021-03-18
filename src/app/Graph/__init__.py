@@ -16,6 +16,15 @@ class Graph:
         auxCont +=1
       print()
 
+  def printGraphWithWeight(self):
+    for node in self.adjacentNodeList:
+      auxCont = 0
+      print("Cor: ", node.color, " ", "[", node.id, "]", end='')
+      for edge in node.edgeList:
+        print(' ->', node.edgeList[auxCont].destinyNodeId, ' (Peso: ',node.edgeList[auxCont].weight, ')', end='')
+        auxCont +=1
+      print()
+
   def addNode(self, id):
     node = Node(id, 0)
     self.adjacentNodeList.append(node)
@@ -37,7 +46,6 @@ class Graph:
       self.addNode(id1) # Se não está no Grafo adicionar
       isOnGraph[0] = True
 
-
     if self.isOnGraph(id2):
       isOnGraph[1] = True
     else:
@@ -58,6 +66,35 @@ class Graph:
         if indexNode1 != -1 and indexNode2 != -1:
           self.adjacentNodeList[indexNode1].addEdge(id2, id1, indexNode2, indexNode1)
           self.adjacentNodeList[indexNode2].addEdge(id1, id2, indexNode1, indexNode2)
+          break
+
+  def addEdgeToGraphWithWeight(self, id1, id2, weight):
+    isOnGraph = [False, False]
+    if self.isOnGraph(id1):
+      isOnGraph[0] = True
+    else:
+      self.addNode(id1) # Se não está no Grafo adicionar
+      isOnGraph[0] = True
+
+    if self.isOnGraph(id2):
+      isOnGraph[1] = True
+    else:
+      self.addNode(id2) # Se não está no Grafo adicionar
+      isOnGraph[1] = True
+
+    # Se os dois ids estão no Grafo
+    if isOnGraph[0] == True and isOnGraph[1] == True:
+      indexNode1 = -1
+      indexNode2 = -1
+      for index in range(0, len(self.adjacentNodeList)):
+        if id1 != id2:
+          if self.adjacentNodeList[index].id == id1:
+            indexNode1 = index
+          elif self.adjacentNodeList[index].id == id2:
+            indexNode2 = index
+          
+        if indexNode1 != -1 and indexNode2 != -1:
+          self.adjacentNodeList[indexNode1].addEdgeWithWeight(id2, id1, indexNode2, indexNode1,weight)
           break
 
   def greedyAlgorithm(self):

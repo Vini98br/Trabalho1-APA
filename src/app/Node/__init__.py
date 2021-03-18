@@ -15,6 +15,14 @@ class Node:
       self.degree += 1
     self.edgeList.append(edge)
 
+  def addEdgeWithWeight(self, destinyNodeId, sourceNodeId, destinyNodeIndex, sourceNodeIndex, weight):
+    edge = Edge(destinyNodeId, sourceNodeId, destinyNodeIndex, sourceNodeIndex, weight)
+    if destinyNodeId == self.id:
+      self.degree += 2
+    else:
+      self.degree += 1
+    self.edgeList.append(edge)
+
   def addAdjacentColor(self, color):
     flag = False
     for item in self.adjacentColors:
