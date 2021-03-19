@@ -237,8 +237,7 @@ class Graph:
     
     print(distanceGraph)
 
-
-
+  #funcao para setar os valores iniciais da matriz distanceGraph
   def setFloydAlgorithmMatrix(self): 
     infinity = 9999
     numberOfNodes = len(self.adjacentNodeList)
