@@ -229,11 +229,11 @@ class Graph:
   def floydAlgorithm(self):
     distanceGraph = self.setFloydAlgorithmMatrix()
     numberOfNodes = len(self.adjacentNodeList)
-    for sourceNode in  range(numberOfNodes):
-      for destinyNode in  range(numberOfNodes):
-        for nextNode in  range(numberOfNodes):    
-          if(distanceGraph[sourceNode][nextNode] + distanceGraph[nextNode][destinyNode] <   distanceGraph[sourceNode][destinyNode]):
-            distanceGraph[sourceNode][destinyNode] = distanceGraph[sourceNode][nextNode] + distanceGraph[nextNode][destinyNode]
+    for intermediateNode in  range(numberOfNodes):
+      for sourceNode in  range(numberOfNodes):
+        for destinyNode in  range(numberOfNodes):    
+          if(distanceGraph[sourceNode][intermediateNode] + distanceGraph[intermediateNode][destinyNode] <   distanceGraph[sourceNode][destinyNode]):
+            distanceGraph[sourceNode][destinyNode] = distanceGraph[sourceNode][intermediateNode] + distanceGraph[intermediateNode][destinyNode]
     
     print(distanceGraph)
 
@@ -249,12 +249,13 @@ class Graph:
         else:
           distanceGraph[sourceNode][destinyNode] = infinity
 
+    #Loop principal para pegar todos os pesos da arestas e atribuir
+    # na tabela de acordo com o no Inicial e o no destino
     for sourceNode in  range(numberOfNodes):
       for destinyNode in  range(numberOfNodes):
         for edge in self.adjacentNodeList[sourceNode].edgeList:
           if( sourceNode != destinyNode):
             if(edge.destinyNodeIndex == destinyNode  and edge.weight < distanceGraph[sourceNode][destinyNode]):
-              distanceGraph[sourceNode][destinyNode] = edge.weight      
-              break
+              distanceGraph[sourceNode][destinyNode] = edge.weight
 
     return distanceGraph        
