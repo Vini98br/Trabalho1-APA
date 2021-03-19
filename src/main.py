@@ -26,20 +26,20 @@ def main(args):
   execTimeGreedy = round((endTimeGreedy - startTimeGreedy)*1000, 3)
   print("--- %f milliseconds ---" % execTimeGreedy)
 
-  startTimeBruteForce = time.time()
-  bruteForceColors = graph.bruteForce()
-  print('Cores Força bruta: ', bruteForceColors) 
-  endTimeBruteForce = time.time()
-  execTimeBruteForce = round((endTimeBruteForce - startTimeBruteForce)*1000, 3)
-  print("--- %f milliseconds ---" % execTimeBruteForce)
+  startTimeSequential = time.time()
+  sequentialColors = graph.sequential()
+  print('Cores Força bruta: ', sequentialColors) 
+  endTimeSequential = time.time()
+  execTimeSequential = round((endTimeSequential - startTimeSequential)*1000, 3)
+  print("--- %f milliseconds ---" % execTimeSequential)
 
   with open('out/{filename}-out.csv'.format(filename=filename), 'a') as outFile:
-    outFile.write('{greedyColors};{execTimeGreedy};{bruteForceColors};{execTimeBruteForce} \n'
+    outFile.write('{greedyColors};{execTimeGreedy};{sequentialColors};{execTimeSequential} \n'
       .format(
         greedyColors=greedyColors, 
         execTimeGreedy=str(execTimeGreedy).replace('.',','), 
-        execTimeBruteForce=str(execTimeBruteForce).replace('.',','), 
-        bruteForceColors=bruteForceColors)
+        execTimeSequential=str(execTimeSequential).replace('.',','), 
+        sequentialColors=sequentialColors)
     )
 
   # graph.printGraph() # Imprime o grafo

@@ -150,7 +150,7 @@ class Graph:
 
     return maxColors
 
-  def bruteForce(self):
+  def sequential(self):
     maxColors = 0 # O maximo de cor no momento.
 
     firstNode = self.adjacentNodeList[0]
