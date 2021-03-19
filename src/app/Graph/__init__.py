@@ -225,3 +225,37 @@ class Graph:
           break
 
     return maxColors
+
+  def floydAlgorithm(self):
+    distanceGraph = self.setFloydAlgorithmMatrix()
+    numberOfNodes = len(self.adjacentNodeList)
+    for sourceNode in  range(numberOfNodes):
+      for destinyNode in  range(numberOfNodes):
+        for nextNode in  range(numberOfNodes):    
+          if(distanceGraph[sourceNode][nextNode] + distanceGraph[nextNode][destinyNode] <   distanceGraph[sourceNode][destinyNode]):
+            distanceGraph[sourceNode][destinyNode] = distanceGraph[sourceNode][nextNode] + distanceGraph[nextNode][destinyNode]
+    
+    print(distanceGraph)
+
+
+
+  def setFloydAlgorithmMatrix(self): 
+    infinity = 9999
+    numberOfNodes = len(self.adjacentNodeList)
+    distanceGraph =  [[0 for x in range(numberOfNodes)] for y in range(numberOfNodes)] 
+    for sourceNode in  range(numberOfNodes):
+      for destinyNode in  range(numberOfNodes):
+        if( sourceNode == destinyNode):
+          distanceGraph[sourceNode][destinyNode] = 0
+        else:
+          distanceGraph[sourceNode][destinyNode] = infinity
+
+    for sourceNode in  range(numberOfNodes):
+      for destinyNode in  range(numberOfNodes):
+        for edge in self.adjacentNodeList[sourceNode].edgeList:
+          if( sourceNode != destinyNode):
+            if(edge.destinyNodeIndex == destinyNode  and edge.weight < distanceGraph[sourceNode][destinyNode]):
+              distanceGraph[sourceNode][destinyNode] = edge.weight      
+              break
+
+    return distanceGraph        
